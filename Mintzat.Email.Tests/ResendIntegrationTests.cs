@@ -38,17 +38,17 @@ internal class ResendIntegrationTests
         string bcc = string.Empty;
         if (_configuration == null)
         {
-            sender = Environment.GetEnvironmentVariable("Sender")!;
-            recipients = Environment.GetEnvironmentVariable("Recipients")!;
-            cc = Environment.GetEnvironmentVariable("Cc")!;
-            bcc = Environment.GetEnvironmentVariable("Bcc")!;
+            sender = Environment.GetEnvironmentVariable("SENDER")!;
+            recipients = Environment.GetEnvironmentVariable("RECIPIENTS")!;
+            cc = Environment.GetEnvironmentVariable("CC")!;
+            bcc = Environment.GetEnvironmentVariable("BCC")!;
         }
         else
         {
-            sender = _configuration["SENDER"]!;
-            recipients = _configuration["RECIPIENTS"]!;
-            cc = _configuration["CC"]!;
-            bcc = _configuration["BCC"]!;
+            sender = _configuration["Sender"]!;
+            recipients = _configuration["Recipients"]!;
+            cc = _configuration["Cc"]!;
+            bcc = _configuration["Bcc"]!;
         }
 
         Dictionary<string, string> keyValuePairs = [];
