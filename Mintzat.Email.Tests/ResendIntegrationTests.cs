@@ -21,7 +21,7 @@ internal class ResendIntegrationTests
         }
         catch
         {
-            apiKey = Environment.GetEnvironmentVariable("ApiKey")!;
+            apiKey = Environment.GetEnvironmentVariable("APIKEY")!;
         }
 
         _sender = new ResendSender(apiKey);
@@ -45,10 +45,10 @@ internal class ResendIntegrationTests
         }
         else
         {
-            sender = _configuration["Sender"]!;
-            recipients = _configuration["Recipients"]!;
-            cc = _configuration["Cc"]!;
-            bcc = _configuration["Bcc"]!;
+            sender = _configuration["SENDER"]!;
+            recipients = _configuration["RECIPIENTS"]!;
+            cc = _configuration["CC"]!;
+            bcc = _configuration["BCC"]!;
         }
 
         Dictionary<string, string> keyValuePairs = [];
