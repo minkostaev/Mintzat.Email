@@ -25,4 +25,10 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test
+      env:
+        APIKEY: ${{ secrets.APIKEY }}
+        BCC: ${{ secrets.BCC }}
+        CC: ${{ secrets.CC }}
+        RECIPIENTS: ${{ secrets.RECIPIENTS }}
+        SENDER: ${{ secrets.SENDER }}
       run: dotnet test --no-build --verbosity normal
