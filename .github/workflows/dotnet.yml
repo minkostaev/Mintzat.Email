@@ -49,4 +49,4 @@ jobs:
     - name: Send coverage to Coveralls
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
-      run: dotnet coveralls --opencover -i MyClassLibrary.Tests/coverage.opencover.xml
+      run: dotnet coveralls --opencover -i Mintzat.Email.Tests/coverage.opencover.xml
