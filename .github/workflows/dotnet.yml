@@ -31,7 +31,8 @@ jobs:
         CC: ${{ secrets.CC }}
         RECIPIENTS: ${{ secrets.RECIPIENTS }}
         SENDER: ${{ secrets.SENDER }}
-      run: dotnet test --no-build --collect:"XPlat Code Coverage" /p:CoverletOutputFormat=cobertura /p:CoverletOutput=./TestResults/
+      run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+      #run: dotnet test --no-build --collect:"XPlat Code Coverage" /p:CoverletOutputFormat=cobertura /p:CoverletOutput=./TestResults/
 
     #- name: Upload coverage to Codecov
     #  uses: codecov/codecov-action@v3
@@ -39,8 +40,13 @@ jobs:
     #    files: ./TestResults/coverage.cobertura.xml
     #    token: ${{ secrets.CODECOV_TOKEN }}
         
-    - name: Upload test results to Codecov
-      if: ${{ !cancelled() }}
-      uses: codecov/test-results-action@v1
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
+    #- name: Upload test results to Codecov
+    #  if: ${{ !cancelled() }}
+    #  uses: codecov/test-results-action@v1
+    #  with:
+    #    token: ${{ secrets.CODECOV_TOKEN }}
+
+    - name: Send coverage to Coveralls
+      env:
+        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+      run: dotnet coveralls --opencover -i MyClassLibrary.Tests/coverage.opencover.xml
