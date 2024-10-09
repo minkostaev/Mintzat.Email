@@ -50,5 +50,5 @@ jobs:
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
       run: |
-        dotnet tool install --global dotnet-coveralls
+        dotnet tool install --global coveralls.net
         dotnet coveralls --opencover -i Mintzat.Email.Tests/coverage.opencover.xml
