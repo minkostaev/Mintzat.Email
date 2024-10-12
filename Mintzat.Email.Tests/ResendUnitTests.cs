@@ -14,7 +14,7 @@ public class ResendUnitTests
     [SetUp]
     public void Setup()
     {
-        _sender = new ResendSender("apiKey");
+        _sender = new ResendSender("apiKey", "no-reply@email.com");
 
         var mockHandler = new Mock<HttpMessageHandler>(MockBehavior.Strict);
         var responseMessage = new HttpResponseMessage(HttpStatusCode.OK)
@@ -38,7 +38,7 @@ public class ResendUnitTests
     [Test]
     public async Task SendEmail_Success()
     {
-        var result = await _sender.SendEmail("no-reply@abv.com",
+        var result = await _sender.SendEmail("no-reply@site.com",
             ["recipients@mail.com"],
             "Test Email from Resend",
             "<h1>Hello!</h1><p>This is a test email sent using Resend API.</p>",
@@ -54,7 +54,7 @@ public class ResendUnitTests
         FieldInfo? fieldInfo = type.GetField("_emailClient", BindingFlags.NonPublic | BindingFlags.Instance);
         fieldInfo?.SetValue(_sender, null);
 
-        var result = await _sender.SendEmail("no-reply@abv.com",
+        var result = await _sender.SendEmail("invalid email",
             ["recipients@mail.com"],
             "Test Email from Resend",
             "<h1>Hello!</h1><p>This is a test email sent using Resend API.</p>",
@@ -68,7 +68,11 @@ public class ResendUnitTests
     {
         Type type = typeof(ResendSender);
         MethodInfo? info = type.GetMethod("SendEmail", BindingFlags.NonPublic | BindingFlags.Instance);
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
         var result = await (Task<(bool, string)>)info?.Invoke(_sender, [new Action(() => { })]);
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 
         Assert.That(result.Item1, Is.False);
     }
