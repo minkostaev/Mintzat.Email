@@ -1,17 +1,25 @@
 ﻿namespace Mintzat.Email.ResendCom;
 
+using Mintzat.Email.Services;
 using System.Text;
 using System.Text.Json;
 
 public class ResendSender
 {
-    private readonly HttpClient _emailClient;
     private const string _emailsUri = $"https://api.resend.com/emails";
+    private readonly HttpClient _emailClient;
+    private readonly string _defaultSender;
 
-    public ResendSender(string apiKey)
+    /// <summary>
+    /// Constructor preparing sending emails with resend.com
+    /// </summary>
+    /// <param name="apiKey">API Key from resend.com</param>
+    /// <param name="defaultSender">email from your domain that is added to resend.com DNS</param>
+    public ResendSender(string apiKey, string defaultSender = "")
     {
         _emailClient = new HttpClient();
         _emailClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
+        _defaultSender = defaultSender;
     }
 
     /// <summary>
@@ -45,8 +53,33 @@ public class ResendSender
             }
         }
 
+        #region Validation (for preventing failure)
+        // topic and content (prevent empty)
+        if (string.IsNullOrEmpty(topic))
+            topic = " ";
+        if (string.IsNullOrEmpty(content))
+            content = " ";
+        // sender email (valid and domain dependant)
+        if (!Validation.IsValidEmail(sender) && Validation.IsValidEmail(_defaultSender))
+            sender = _defaultSender;
+        string domainSender = Validation.GetDomainFromEmail(sender);
+        string domainDefault = Validation.GetDomainFromEmail(_defaultSender);
+        if (domainSender != domainDefault && Validation.IsValidEmail(_defaultSender))
+            sender = _defaultSender;
+        // replyTo (ignore if invalid email)
+        if (!Validation.IsValidEmail(replyTo))
+            replyTo = null;
+        // Emails collections
+        if (recipients != null)
+            recipients = Validation.ValidateEmails(recipients)!;
+        // to do null case
+        ccEmails = Validation.ValidateEmails(ccEmails);
+        bccEmails = Validation.ValidateEmails(bccEmails);
+        #endregion
+
         var emailContent = new
         {
+            //from = "Acme <onboarding@resend.dev>", to do add name
             from = sender,
             to = recipients,
             subject = topic,

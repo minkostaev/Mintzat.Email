@@ -3,7 +3,7 @@
 using Microsoft.Extensions.Configuration;
 using Mintzat.Email.ResendCom;
 
-internal class ResendIntegrationTests
+public class ResendIntegrationTests
 {
     private ResendSender _sender;
 

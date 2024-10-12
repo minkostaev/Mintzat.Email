@@ -35,30 +35,8 @@ jobs:
         /p:CollectCoverage=true
         /p:CoverletOutput=TestResults/
         /p:CoverletOutputFormat=lcov
-      #run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-      #run: dotnet test --no-build --collect:"XPlat Code Coverage" /p:CoverletOutputFormat=cobertura /p:CoverletOutput=./TestResults/
-
     - name: Publish coverage report to coveralls.io   
       uses: coverallsapp/github-action@master   
       with:
         github-token: ${{ secrets.COVERALLS_REPO_TOKEN }} 
         path-to-lcov: Mintzat.Email.Tests/TestResults/coverage.info
-
-    #- name: Upload coverage to Codecov
-    #  uses: codecov/codecov-action@v3
-    #  with:
-    #    files: ./TestResults/coverage.cobertura.xml
-    #    token: ${{ secrets.CODECOV_TOKEN }}
-        
-    #- name: Upload test results to Codecov
-    #  if: ${{ !cancelled() }}
-    #  uses: codecov/test-results-action@v1
-    #  with:
-    #    token: ${{ secrets.CODECOV_TOKEN }}
-
-    #- name: Send coverage to Coveralls
-    #  env:
-    #    COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
-    #  run: |
-    #    dotnet tool install --global coveralls.net
-    #    dotnet coveralls --opencover -i Mintzat.Email.Tests/coverage.opencover.xml
