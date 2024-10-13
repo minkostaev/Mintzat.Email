@@ -50,6 +50,9 @@ project.json
 # Visual Studio Code settings
 .vscode/
 
+# Generated test files
+TestResults/
+
 # Others
 *.cache
 *.tmp

@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace Mintzat.Email.Services;
+﻿namespace Mintzat.Email.Services;
 
 using System.Text.RegularExpressions;
 

@@ -7,6 +7,7 @@ using System.Text.Json;
 public class ResendSender
 {
     private const string _emailsUri = $"https://api.resend.com/emails";
+    private const string _batchUri = $"https://api.resend.com/batch";
     private readonly HttpClient _emailClient;
     private readonly string _defaultSender;
 
@@ -25,7 +26,7 @@ public class ResendSender
     /// <summary>
     /// Sending email using the resend api
     /// </summary>
-    /// <param name="sender">Email from</param>
+    /// <param name="senderEmail">Email from</param>
     /// <param name="recipients">Email to recipients</param>
     /// <param name="topic">Email subject</param>
     /// <param name="content">Email's html</param>
@@ -33,10 +34,11 @@ public class ResendSender
     /// <param name="ccEmails">Email cc recipients</param>
     /// <param name="bccEmails">Email bcc recipients</param>
     /// <param name="attachedFiles">Email's attached files</param>
+    /// <param name="senderName">Email sender name/param>
     /// <returns>Success state and error message</returns>
-    public async Task<(bool, string)> SendEmail(string sender, string[] recipients, string topic, string content,
+    public async Task<(bool, string)> SendEmail(string senderEmail, string[] recipients, string topic, string content,
         string? replyTo = null, string[]? ccEmails = null, string[]? bccEmails = null,
-        Dictionary<string, string>? attachedFiles = null)
+        Dictionary<string, string>? attachedFiles = null, string senderName = "")
     {
         List<object> attFiles = [];
         if (attachedFiles != null)
@@ -60,12 +62,12 @@ public class ResendSender
         if (string.IsNullOrEmpty(content))
             content = " ";
         // sender email (valid and domain dependant)
-        if (!Validation.IsValidEmail(sender) && Validation.IsValidEmail(_defaultSender))
-            sender = _defaultSender;
-        string domainSender = Validation.GetDomainFromEmail(sender);
+        if (!Validation.IsValidEmail(senderEmail) && Validation.IsValidEmail(_defaultSender))
+            senderEmail = _defaultSender;
+        string domainSender = Validation.GetDomainFromEmail(senderEmail);
         string domainDefault = Validation.GetDomainFromEmail(_defaultSender);
         if (domainSender != domainDefault && Validation.IsValidEmail(_defaultSender))
-            sender = _defaultSender;
+            senderEmail = _defaultSender;
         // replyTo (ignore if invalid email)
         if (!Validation.IsValidEmail(replyTo))
             replyTo = null;
@@ -77,9 +79,10 @@ public class ResendSender
         bccEmails = Validation.ValidateEmails(bccEmails);
         #endregion
 
+        string sender = string.IsNullOrEmpty(senderName) ? senderEmail : $"{senderName} <{senderEmail}>";
+
         var emailContent = new
         {
-            //from = "Acme <onboarding@resend.dev>", to do add name
             from = sender,
             to = recipients,
             subject = topic,
@@ -114,6 +117,15 @@ public class ResendSender
 
     private async Task<(bool, string)> SendEmail(object emailContent)
     {
+        return await SendRequest(emailContent, _emailsUri);
+    }
+    private async Task<(bool, string)> SendEmails(object[] emailContent)
+    {
+        return await SendRequest(emailContent, _batchUri);
+    }
+
+    private async Task<(bool, string)> SendRequest(object emailContent, string uri)
+    {
         StringContent? content;
         try
         {
@@ -129,7 +141,7 @@ public class ResendSender
         string responseBody;
         try
         {
-            response = await _emailClient.PostAsync(_emailsUri, content);
+            response = await _emailClient.PostAsync(uri, content);
             responseBody = await response.Content.ReadAsStringAsync();
         }
         catch (Exception ex)
