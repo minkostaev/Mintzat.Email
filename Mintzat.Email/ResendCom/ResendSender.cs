@@ -40,6 +40,7 @@ public class ResendSender
         string? replyTo = null, string[]? ccEmails = null, string[]? bccEmails = null,
         Dictionary<string, string>? attachedFiles = null, string senderName = "")
     {
+        #region Files' list
         List<object> attFiles = [];
         if (attachedFiles != null)
         {
@@ -49,11 +50,12 @@ public class ResendSender
                 {
                     filename = file.Key,//file name and extension
                     content = file.Value,//base64 encoded content
-                    ///type = "application/pdf"
+                    type = Validation.GetAttachedFileType(file.Key)
                 };
                 attFiles.Add(attachedFile);
             }
         }
+        #endregion
 
         #region Validation (for preventing failure)
         // topic and content (prevent empty)
