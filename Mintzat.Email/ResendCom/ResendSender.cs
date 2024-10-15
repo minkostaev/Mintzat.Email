@@ -1,6 +1,7 @@
 ﻿namespace Mintzat.Email.ResendCom;
 
 using Mintzat.Email.Services;
+using System.Net.Mail;
 using System.Text;
 using System.Text.Json;
 
@@ -36,7 +37,88 @@ public class ResendSender
     /// <param name="attachedFiles">Email's attached files</param>
     /// <param name="senderName">Email sender name/param>
     /// <returns>Success state and error message</returns>
-    public async Task<(bool, string)> SendEmail(string senderEmail, string[] recipients, string topic, string content,
+    //public async Task<(bool, string)> SendEmail(string senderEmail, string[] recipients, string topic, string content,
+    //    string? replyTo = null, string[]? ccEmails = null, string[]? bccEmails = null,
+    //    Dictionary<string, string>? attachedFiles = null, string senderName = "")
+    //{
+    //    #region Files' list
+    //    List<object> attFiles = [];
+    //    if (attachedFiles != null)
+    //    {
+    //        foreach (var file in attachedFiles)
+    //        {
+    //            var attachedFile = new
+    //            {
+    //                filename = file.Key,//file name and extension
+    //                content = file.Value,//base64 encoded content
+    //                type = Validation.GetAttachedFileType(file.Key)
+    //            };
+    //            attFiles.Add(attachedFile);
+    //        }
+    //    }
+    //    #endregion
+
+    //    #region Validation (for preventing failure)
+    //    // topic and content (prevent empty)
+    //    if (string.IsNullOrEmpty(topic))
+    //        topic = " ";
+    //    if (string.IsNullOrEmpty(content))
+    //        content = " ";
+    //    // sender email (valid and domain dependant)
+    //    if (!Validation.IsValidEmail(senderEmail) && Validation.IsValidEmail(_defaultSender))
+    //        senderEmail = _defaultSender;
+    //    string domainSender = Validation.GetDomainFromEmail(senderEmail);
+    //    string domainDefault = Validation.GetDomainFromEmail(_defaultSender);
+    //    if (domainSender != domainDefault && Validation.IsValidEmail(_defaultSender))
+    //        senderEmail = _defaultSender;
+    //    // replyTo (ignore if invalid email)
+    //    if (!Validation.IsValidEmail(replyTo))
+    //        replyTo = null;
+    //    // Emails collections
+    //    if (recipients != null)
+    //        recipients = Validation.ValidateEmails(recipients)!;
+    //    // to do null case
+    //    ccEmails = Validation.ValidateEmails(ccEmails);
+    //    bccEmails = Validation.ValidateEmails(bccEmails);
+    //    #endregion
+
+    //    string sender = string.IsNullOrEmpty(senderName) ? senderEmail : $"{senderName} <{senderEmail}>";
+
+    //    var emailContent = new
+    //    {
+    //        from = sender,
+    //        to = recipients,
+    //        subject = topic,
+    //        html = content,
+    //        ///text = "This is the plain text version of the email.",
+    //        reply_to = replyTo,
+    //        cc = ccEmails,
+    //        bcc = bccEmails,
+    //        attachments = attFiles,
+    //        ///attachments = new[] {
+    //        ///    new {
+    //        ///        filename = "example.pdf",
+    //        ///        content = "base64encodedcontent",
+    //        ///        type = "application/pdf"
+    //        ///    }
+    //        ///},
+
+    //        ///priority = "high",
+    //        ///idempotency_key = "unique-idempotency-key",
+    //        ///headers = new
+    //        ///{
+    //        ///    "X-Custom-Header": "Custom Value"
+    //        ///},
+    //        ///tags = new
+    //        ///{
+    //        ///    category = "newsletter",
+    //        ///    campaign_id = "summer-sale"
+    //        ///}
+    //    };
+    //    return await SendEmail(emailContent);
+    //}
+
+    public object DoEmailMessage(string senderEmail, string[] recipients, string topic, string content,
         string? replyTo = null, string[]? ccEmails = null, string[]? bccEmails = null,
         Dictionary<string, string>? attachedFiles = null, string senderName = "")
     {
@@ -83,7 +165,7 @@ public class ResendSender
 
         string sender = string.IsNullOrEmpty(senderName) ? senderEmail : $"{senderName} <{senderEmail}>";
 
-        var emailContent = new
+        return new
         {
             from = sender,
             to = recipients,
@@ -101,7 +183,7 @@ public class ResendSender
             ///        type = "application/pdf"
             ///    }
             ///},
-            
+
             ///priority = "high",
             ///idempotency_key = "unique-idempotency-key",
             ///headers = new
@@ -114,16 +196,15 @@ public class ResendSender
             ///    campaign_id = "summer-sale"
             ///}
         };
-        return await SendEmail(emailContent);
     }
 
-    private async Task<(bool, string)> SendEmail(object emailContent)
+    public async Task<(bool, string)> SendEmail(object emailMessage)
     {
-        return await SendRequest(emailContent, _emailsUri);
+        return await SendRequest(emailMessage, _emailsUri);
     }
-    private async Task<(bool, string)> SendEmails(object[] emailContent)
+    public async Task<(bool, string)> SendEmails(object[] emailsMessages)
     {
-        return await SendRequest(emailContent, _batchUri);
+        return await SendRequest(emailsMessages, _batchUri);
     }
 
     private async Task<(bool, string)> SendRequest(object emailContent, string uri)
