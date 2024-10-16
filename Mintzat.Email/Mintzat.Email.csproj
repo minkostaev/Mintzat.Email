@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>1.0.5</Version>
+    <Version>1.0.6</Version>
     <!--<AssemblyVersion>1.0.12.0</AssemblyVersion>
     <FileVersion>1.0.12.0</FileVersion>
     <VersionPrefix>1.0.12</VersionPrefix>-->
@@ -14,11 +14,11 @@
     <PackageReference Include="Resend" Version="0.0.7" />
   </ItemGroup>-->
 
-  <!--NuGet Package configuration-->
+  <!--NuGet Package configuration for nuget.org-->
   <PropertyGroup>
     <IsPackable>true</IsPackable>
-    <Description>This library purpose for easy email sending with different providers</Description>
-    <!--<PackageReadmeFile>nuget.md</PackageReadmeFile>-->
+    <Description>This library's purpose is for easy emails sending with different providers</Description>
+    <PackageReadmeFile>nuget.md</PackageReadmeFile>
     <PackageTags>email</PackageTags>
     <PackageProjectUrl>https://github.com/minkostaev/Mintzat.Email</PackageProjectUrl>
     <RepositoryUrl>https://github.com/minkostaev/Mintzat.Email</RepositoryUrl>
@@ -31,8 +31,8 @@
   </PropertyGroup>
 
   <!--NuGet Package configuration for nuget.org-->
-  <!--<ItemGroup>
-    <None Include="..\README\nuget.md" Pack="true" PackagePath="\" />
-  </ItemGroup>-->
+  <ItemGroup>
+    <None Include="..\.github\nuget.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
 </Project>
