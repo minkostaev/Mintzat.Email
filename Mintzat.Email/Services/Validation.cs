@@ -71,5 +71,26 @@ public static class Validation
             _ => "application/octet-stream"
         };
     }
+    public static object[]? GetAttachedFiles(Dictionary<string, string>? files)
+    {
+        List<object>? result = [];
+        if (files != null)
+        {
+            foreach (var file in files)
+            {
+                var attachedFile = new
+                {
+                    filename = file.Key,//file name and extension
+                    content = file.Value,//base64 encoded content
+                    type = GetAttachedFileType(file.Key)
+                };
+                result.Add(attachedFile);
+            }
+        }
+        if (result.Count == 0)
+            return null;
+        else
+            return [.. result];
+    }
 
 }

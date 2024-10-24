@@ -44,7 +44,6 @@ public class ResendUnitTests
             "Test Email from Resend",
             "<h1>Hello!</h1><p>This is a test email sent using Resend API.</p>",
             null, ["cc@mail.com"], ["bcc@mail.com"], files);
-        //var result = await _sender.SendEmail(email);
 
         Assert.That(result.Item1, Is.True);
     }
@@ -58,13 +57,11 @@ public class ResendUnitTests
         _emailClient?.SetValue(_sender, null);
 
         var result1 = await _sender.SendEmail("invalid email", [""], "", "");
-        //var result1 = await _sender.SendEmail(email1);
 
         FieldInfo? _defaultSender = type.GetField("_defaultSender", BindingFlags.NonPublic | BindingFlags.Instance);
         _defaultSender?.SetValue(_sender, null);
 
         var result2 = await _sender.SendEmail("invalid email", [""], "", "");
-        //var result2 = await _sender.SendEmail(email2);
 
         Assert.Multiple(() =>
         {

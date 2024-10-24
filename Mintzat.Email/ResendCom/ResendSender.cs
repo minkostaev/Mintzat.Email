@@ -39,23 +39,6 @@ public class ResendSender
         string? replyTo = null, string[]? ccEmails = null, string[]? bccEmails = null,
         Dictionary<string, string>? attachedFiles = null, string senderName = "")
     {
-        #region Files' list
-        List<object> attFiles = [];
-        if (attachedFiles != null)
-        {
-            foreach (var file in attachedFiles)
-            {
-                var attachedFile = new
-                {
-                    filename = file.Key,//file name and extension
-                    content = file.Value,//base64 encoded content
-                    type = Validation.GetAttachedFileType(file.Key)
-                };
-                attFiles.Add(attachedFile);
-            }
-        }
-        #endregion
-
         #region Validation (for preventing failure)
         // topic and content (prevent empty)
         if (string.IsNullOrEmpty(topic))
@@ -75,12 +58,18 @@ public class ResendSender
         // Emails collections
         if (recipients != null)
             recipients = Validation.ValidateEmails(recipients)!;
-        // to do null case
         ccEmails = Validation.ValidateEmails(ccEmails);
         bccEmails = Validation.ValidateEmails(bccEmails);
+        var files = Validation.GetAttachedFiles(attachedFiles);
         #endregion
 
         string sender = string.IsNullOrEmpty(senderName) ? senderEmail : $"{senderName} <{senderEmail}>";
+
+        if (string.IsNullOrEmpty(topic) || string.IsNullOrEmpty(content) || string.IsNullOrEmpty(sender)
+            || recipients == null || recipients.Length == 0)
+        {
+            return (false, "valid error before sending - senderEmail or recipients or topic or content");
+        }
 
         var emailMessage = new
         {
@@ -92,7 +81,7 @@ public class ResendSender
             reply_to = replyTo,
             cc = ccEmails,
             bcc = bccEmails,
-            attachments = attFiles,
+            attachments = files,
             ///attachments = new[] {
             ///    new {
             ///        filename = "example.pdf",

@@ -56,13 +56,11 @@ public class ResendIntegrationTests
             "Test Email from Resend",
             "<h1>Hello!</h1><p>This is a test email sent using Resend API.</p>",
             null, [_ccEmail], [_bccEmail], keyValuePairs, "James Bond");
-        //var result = await _sender.SendEmail(email1);
 
         var result2 = await _sender.SendEmail(_senderEmail, [_recipientEmail],
             "Test Email from Resend",
             "<h1>Hello!</h1><p>This is a test email sent using Resend API.</p>",
             null, [_bccEmail], [_ccEmail]);
-        //var result2 = await _sender.SendEmail(email2);
 
         Assert.Multiple(() =>
         {
