@@ -4,10 +4,10 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>1.0.7</Version>
-    <!--<AssemblyVersion>1.0.12.0</AssemblyVersion>
-    <FileVersion>1.0.12.0</FileVersion>
-    <VersionPrefix>1.0.12</VersionPrefix>-->
+    <Version>1.0.8</Version>
+    <!--<AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <FileVersion>1.0.1.0</FileVersion>
+    <VersionPrefix>1.0.1</VersionPrefix>-->
   </PropertyGroup>
 
   <!--<ItemGroup>
@@ -16,10 +16,9 @@
 
   <!--NuGet Package configuration for nuget.org-->
   <PropertyGroup>
-    <IsPackable>true</IsPackable>
     <Description>This library's purpose is for easy emails sending with different providers</Description>
     <PackageReadmeFile>nuget.md</PackageReadmeFile>
-    <PackageTags>email</PackageTags>
+    <PackageTags>email;resend</PackageTags>
     <PackageProjectUrl>https://github.com/minkostaev/Mintzat.Email</PackageProjectUrl>
     <RepositoryUrl>https://github.com/minkostaev/Mintzat.Email</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -28,11 +27,13 @@
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludeSymbols>true</IncludeSymbols>
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    <IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <!--NuGet Package configuration for nuget.org-->
   <ItemGroup>
     <None Include="..\.github\nuget.md" Pack="true" PackagePath="\" />
+    <None Include="..\README.md" Pack="false" PackagePath="\" />
   </ItemGroup>
 
 </Project>

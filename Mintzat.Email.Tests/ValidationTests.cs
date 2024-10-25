@@ -16,12 +16,12 @@ public class ValidationTests
         string? caseJs = Validation.GetAttachedFileType(".js");
         string? caseCsv = Validation.GetAttachedFileType(".csv");
 
-        //".jpg" => "image/jpeg",
-        //".jpeg" => "image/jpeg",
-        //".png" => "image/png",
-        //".gif" => "image/gif",
-        //".svg" => "image/svg+xml",
-        //".webp" => "image/webp",
+        string? caseJpg = Validation.GetAttachedFileType(".jpg");
+        string? caseJpeg = Validation.GetAttachedFileType(".jpeg");
+        string? casePng = Validation.GetAttachedFileType(".png");
+        string? caseGif = Validation.GetAttachedFileType(".gif");
+        string? caseSvg = Validation.GetAttachedFileType(".svg");
+        string? caseWebp = Validation.GetAttachedFileType(".webp");
 
         //".mp3" => "audio/mpeg",
         //".wav" => "audio/wav",
@@ -55,6 +55,12 @@ public class ValidationTests
             Assert.That(caseCss, Is.EqualTo("text/css"));
             Assert.That(caseJs, Is.EqualTo("text/javascript"));
             Assert.That(caseCsv, Is.EqualTo("text/csv"));
+            Assert.That(caseJpg, Is.EqualTo("image/jpeg"));
+            Assert.That(caseJpeg, Is.EqualTo("image/jpeg"));
+            Assert.That(casePng, Is.EqualTo("image/png"));
+            Assert.That(caseGif, Is.EqualTo("image/gif"));
+            Assert.That(caseSvg, Is.EqualTo("image/svg+xml"));
+            Assert.That(caseWebp, Is.EqualTo("image/webp"));
         });
     }
 }

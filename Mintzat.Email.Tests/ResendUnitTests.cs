@@ -56,7 +56,7 @@ public class ResendUnitTests
         FieldInfo? _emailClient = type.GetField("_emailClient", BindingFlags.NonPublic | BindingFlags.Instance);
         _emailClient?.SetValue(_sender, null);
 
-        var result1 = await _sender.SendEmail("invalid email", [""], "", "");
+        var result1 = await _sender.SendEmail("invalid email", ["test@test.com"], "", "");
 
         FieldInfo? _defaultSender = type.GetField("_defaultSender", BindingFlags.NonPublic | BindingFlags.Instance);
         _defaultSender?.SetValue(_sender, null);

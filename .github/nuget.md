@@ -1,3 +1,6 @@
+# Mintzat.Email
+
+You can see the repo here 
 [![Badge Name](https://img.shields.io/badge/GitHub-Mintzat.Email-blue.svg)](https://github.com/minkostaev/Mintzat.Email)
 
 ![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white)

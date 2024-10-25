@@ -40,11 +40,6 @@ public class ResendSender
         Dictionary<string, string>? attachedFiles = null, string senderName = "")
     {
         #region Validation (for preventing failure)
-        // topic and content (prevent empty)
-        if (string.IsNullOrEmpty(topic))
-            topic = " ";
-        if (string.IsNullOrEmpty(content))
-            content = " ";
         // sender email (valid and domain dependant)
         if (!Validation.IsValidEmail(senderEmail) && Validation.IsValidEmail(_defaultSender))
             senderEmail = _defaultSender;
@@ -62,6 +57,12 @@ public class ResendSender
         bccEmails = Validation.ValidateEmails(bccEmails);
         var files = Validation.GetAttachedFiles(attachedFiles);
         #endregion
+
+        // topic and content (prevent empty)
+        if (string.IsNullOrEmpty(topic))
+            topic = " ";
+        if (string.IsNullOrEmpty(content))
+            content = " ";
 
         string sender = string.IsNullOrEmpty(senderName) ? senderEmail : $"{senderName} <{senderEmail}>";
 
@@ -104,7 +105,7 @@ public class ResendSender
         };
         return await SendRequest(emailMessage, _emailsUri);
     }
-    
+
     private async Task<(bool, string)> SendRequest(object emailContent, string uri)
     {
         StringContent? content;
@@ -113,7 +114,7 @@ public class ResendSender
             string json = JsonSerializer.Serialize(emailContent);
             content = new StringContent(json, Encoding.UTF8, "application/json");
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return (false, ex.Message);
         }

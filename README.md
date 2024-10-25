@@ -1,7 +1,7 @@
 # Mintzat.Email
 
+You can use it in your project from 
 [![Badge Name](https://img.shields.io/badge/GitHub-Mintzat.Email-blue.svg)](https://github.com/minkostaev/Mintzat.Email)
-[![NuGet version (Mintzat.Email)](https://img.shields.io/nuget/v/Mintzat.Email.svg?style=flat-square)](https://www.nuget.org/packages/Mintzat.Email/)
 
 ![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white)
 ![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
