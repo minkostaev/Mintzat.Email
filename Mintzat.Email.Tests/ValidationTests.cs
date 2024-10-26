@@ -23,10 +23,10 @@ public class ValidationTests
         string? caseSvg = Validation.GetAttachedFileType(".svg");
         string? caseWebp = Validation.GetAttachedFileType(".webp");
 
-        //".mp3" => "audio/mpeg",
-        //".wav" => "audio/wav",
-        //".ogg" => "audio/ogg",
-        //".aac" => "audio/aac",
+        string? caseMp3 = Validation.GetAttachedFileType(".mp3");
+        string? caseWav = Validation.GetAttachedFileType(".wav");
+        string? caseOgg = Validation.GetAttachedFileType(".ogg");
+        string? caseAac = Validation.GetAttachedFileType(".aac");
 
         //".mp4" => "video/mp4",
         //".webm" => "video/webm",
@@ -61,6 +61,10 @@ public class ValidationTests
             Assert.That(caseGif, Is.EqualTo("image/gif"));
             Assert.That(caseSvg, Is.EqualTo("image/svg+xml"));
             Assert.That(caseWebp, Is.EqualTo("image/webp"));
+            Assert.That(caseMp3, Is.EqualTo("audio/mpeg"));
+            Assert.That(caseWav, Is.EqualTo("audio/wav"));
+            Assert.That(caseOgg, Is.EqualTo("audio/ogg"));
+            Assert.That(caseAac, Is.EqualTo("audio/aac"));
         });
     }
 }

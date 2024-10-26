@@ -46,7 +46,7 @@ public class ResendIntegrationTests
     }
 
     [Test]
-    [Ignore("really sending emails")]
+    [Ignore("real emails sending")]
     public async Task SendEmail_Success()
     {
         Dictionary<string, string> keyValuePairs = [];

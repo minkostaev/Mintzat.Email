@@ -66,10 +66,9 @@ public class ResendSender
 
         string sender = string.IsNullOrEmpty(senderName) ? senderEmail : $"{senderName} <{senderEmail}>";
 
-        if (string.IsNullOrEmpty(topic) || string.IsNullOrEmpty(content) || string.IsNullOrEmpty(sender)
-            || recipients == null || recipients.Length == 0)
+        if (string.IsNullOrEmpty(sender) || recipients == null || recipients.Length == 0)
         {
-            return (false, "valid error before sending - senderEmail or recipients or topic or content");
+            return (false, "valid error before sending - sender or recipients");
         }
 
         var emailMessage = new
