@@ -41,12 +41,15 @@
   </Target>-->
 
   <PropertyGroup>
-    <IsWindows Condition="'$(OS)' == 'Windows_NT'">true</IsWindows>
+    <!-- Explicitly set IsWindows based on the operating system -->
+    <IsWindows Condition=" '$(OS)' == 'Windows_NT' ">true</IsWindows>
+    <IsWindows Condition=" '$(OS)' != 'Windows_NT' ">false</IsWindows>
   </PropertyGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Condition="$(IsWindows)" Command="powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File $(SolutionDir)preBuild.ps1" />
-    <Exec Condition="!$(IsWindows)" Command="pwsh -ExecutionPolicy Bypass -NoProfile -NonInteractive -File $(SolutionDir)preBuild.ps1" />
+    <!-- Use powershell.exe on Windows, pwsh on Linux -->
+    <Exec Condition="'$(IsWindows)' == 'true'" Command="powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File $(SolutionDir)preBuild.ps1" />
+    <Exec Condition="'$(IsWindows)' != 'true'" Command="pwsh -ExecutionPolicy Bypass -NoProfile -NonInteractive -File $(SolutionDir)preBuild.ps1" />
   </Target>
 
 </Project>
