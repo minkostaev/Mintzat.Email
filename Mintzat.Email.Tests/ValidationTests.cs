@@ -28,23 +28,23 @@ public class ValidationTests
         string? caseOgg = Validation.GetAttachedFileType(".ogg");
         string? caseAac = Validation.GetAttachedFileType(".aac");
 
-        //".mp4" => "video/mp4",
-        //".webm" => "video/webm",
-        //".ogv" => "video/ogg",
-        //".mpeg" => "video/mpeg",
+        string? caseMp4 = Validation.GetAttachedFileType(".mp4");
+        string? caseWebm = Validation.GetAttachedFileType(".webm");
+        string? caseOgv = Validation.GetAttachedFileType(".ogv");
+        string? caseMpeg = Validation.GetAttachedFileType(".mpeg");
 
-        //".pdf" => "application/pdf",
-        //".json" => "application/json",
-        //".xml" => "application/xml",
-        //".xls" => "application/vnd.ms-excel",
-        //".xlsx" => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        //".doc" => "application/msword",
-        //".docx" => "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-        //".zip" => "application/zip",
+        //string? casePdf = Validation.GetAttachedFileType(".pdf");
+        //string? caseJson = Validation.GetAttachedFileType(".json");
+        //string? caseXml = Validation.GetAttachedFileType(".xml");
+        //string? caseXls = Validation.GetAttachedFileType(".xls");
+        //string? caseXlsx = Validation.GetAttachedFileType(".xlsx");
+        //string? caseDoc = Validation.GetAttachedFileType(".doc");
+        //string? caseDocx = Validation.GetAttachedFileType(".docx");
+        //string? caseZip = Validation.GetAttachedFileType(".zip");
 
-        //".otf" => "font/otf",
-        //".ttf" => "font/ttf",
-        //".woff" => "font/woff",
+        //string? caseOtf = Validation.GetAttachedFileType(".otf");
+        //string? caseTtf = Validation.GetAttachedFileType(".ttf");
+        //string? caseWoff = Validation.GetAttachedFileType(".woff");
 
         Assert.Multiple(() =>
         {
@@ -65,6 +65,22 @@ public class ValidationTests
             Assert.That(caseWav, Is.EqualTo("audio/wav"));
             Assert.That(caseOgg, Is.EqualTo("audio/ogg"));
             Assert.That(caseAac, Is.EqualTo("audio/aac"));
+            Assert.That(caseMp4, Is.EqualTo("video/mp4"));
+            Assert.That(caseWebm, Is.EqualTo("video/webm"));
+            Assert.That(caseOgv, Is.EqualTo("video/ogg"));
+            Assert.That(caseMpeg, Is.EqualTo("video/mpeg"));
+            //Assert.That(casePdf, Is.EqualTo("application/pdf"));
+            //Assert.That(caseJson, Is.EqualTo("application/json"));
+            //Assert.That(caseXml, Is.EqualTo("application/xml"));
+            //Assert.That(caseXls, Is.EqualTo("application/vnd.ms-excel"));
+            //Assert.That(caseXlsx, Is.EqualTo("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"));
+            //Assert.That(caseDoc, Is.EqualTo("application/msword"));
+            //Assert.That(caseDocx, Is.EqualTo("application/vnd.openxmlformats-officedocument.wordprocessingml.document"));
+            //Assert.That(caseZip, Is.EqualTo("application/zip"));
+
+            //Assert.That(caseOtf, Is.EqualTo("font/otf"));
+            //Assert.That(caseTtf, Is.EqualTo("font/ttf"));
+            //Assert.That(caseWoff, Is.EqualTo("font/woff"));
         });
     }
 }

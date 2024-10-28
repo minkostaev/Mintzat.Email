@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>1.0.9</Version>
+    <Version>1.0.10</Version>
     <!--<AssemblyVersion>1.0.1.0</AssemblyVersion>
     <FileVersion>1.0.1.0</FileVersion>
     <VersionPrefix>1.0.1</VersionPrefix>-->
@@ -17,7 +17,7 @@
   <!--NuGet Package configuration for nuget.org-->
   <PropertyGroup>
     <Description>This library's purpose is for easy emails sending with different providers</Description>
-    <PackageReadmeFile>nuget.md</PackageReadmeFile>
+    <PackageReadmeFile>README-nuget.md</PackageReadmeFile>
     <PackageTags>email;resend</PackageTags>
     <PackageProjectUrl>https://github.com/minkostaev/Mintzat.Email</PackageProjectUrl>
     <RepositoryUrl>https://github.com/minkostaev/Mintzat.Email</RepositoryUrl>
@@ -32,8 +32,12 @@
 
   <!--NuGet Package configuration for nuget.org-->
   <ItemGroup>
-    <None Include="..\.github\nuget.md" Pack="true" PackagePath="\" />
-    <None Include="..\README.md" Pack="false" PackagePath="\" />
+    <None Include="..\README-nuget.md" Pack="true" PackagePath="\" />
+    <None Include="..\README-template.md" Pack="false" PackagePath="\" />
   </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File $(SolutionDir)preBuild.ps1" />
+  </Target>
 
 </Project>
