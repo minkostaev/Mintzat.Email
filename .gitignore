@@ -5,15 +5,15 @@ Mintzat.Email.Tests/appsettings.json
 bin/
 obj/
 
-# Visual Studio Code
-.vscode/
-
 # Rider
 .idea/
+.idea_modules/
 
 # User-specific files
 *.suo
 *.user
+*.rsuser
+*.userprefs
 *.userosscache
 *.sln.docstates
 
@@ -27,11 +27,18 @@ obj/
 *.dbproj.schemaview
 *.pdb
 
+# Visual Studio Code
+.vscode/
+
 # NuGet Packages
 *.nupkg
+*.nuget
 *.snupkg
 packages/
 *.nuspec
+**/packages/*
+!**/packages/build/
+!**/packages/repositories.config
 
 # DotNet
 project.lock.json
@@ -44,14 +51,11 @@ project.json
 [Rr]elease/
 [Rr]eleases/
 
-# Logs
-*.log
-
-# Visual Studio Code settings
-.vscode/
-
 # Generated test files
 TestResults/
+
+# Build directories
+artifacts/
 
 # Others
 *.cache
@@ -60,3 +64,4 @@ TestResults/
 *.log
 *.swp
 *.swo
+*.bak

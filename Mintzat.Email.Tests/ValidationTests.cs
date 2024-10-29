@@ -33,14 +33,14 @@ public class ValidationTests
         string? caseOgv = Validation.GetAttachedFileType(".ogv");
         string? caseMpeg = Validation.GetAttachedFileType(".mpeg");
 
-        //string? casePdf = Validation.GetAttachedFileType(".pdf");
-        //string? caseJson = Validation.GetAttachedFileType(".json");
-        //string? caseXml = Validation.GetAttachedFileType(".xml");
-        //string? caseXls = Validation.GetAttachedFileType(".xls");
-        //string? caseXlsx = Validation.GetAttachedFileType(".xlsx");
-        //string? caseDoc = Validation.GetAttachedFileType(".doc");
-        //string? caseDocx = Validation.GetAttachedFileType(".docx");
-        //string? caseZip = Validation.GetAttachedFileType(".zip");
+        string? casePdf = Validation.GetAttachedFileType(".pdf");
+        string? caseJson = Validation.GetAttachedFileType(".json");
+        string? caseXml = Validation.GetAttachedFileType(".xml");
+        string? caseXls = Validation.GetAttachedFileType(".xls");
+        string? caseXlsx = Validation.GetAttachedFileType(".xlsx");
+        string? caseDoc = Validation.GetAttachedFileType(".doc");
+        string? caseDocx = Validation.GetAttachedFileType(".docx");
+        string? caseZip = Validation.GetAttachedFileType(".zip");
 
         //string? caseOtf = Validation.GetAttachedFileType(".otf");
         //string? caseTtf = Validation.GetAttachedFileType(".ttf");
@@ -69,15 +69,14 @@ public class ValidationTests
             Assert.That(caseWebm, Is.EqualTo("video/webm"));
             Assert.That(caseOgv, Is.EqualTo("video/ogg"));
             Assert.That(caseMpeg, Is.EqualTo("video/mpeg"));
-            //Assert.That(casePdf, Is.EqualTo("application/pdf"));
-            //Assert.That(caseJson, Is.EqualTo("application/json"));
-            //Assert.That(caseXml, Is.EqualTo("application/xml"));
-            //Assert.That(caseXls, Is.EqualTo("application/vnd.ms-excel"));
-            //Assert.That(caseXlsx, Is.EqualTo("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"));
-            //Assert.That(caseDoc, Is.EqualTo("application/msword"));
-            //Assert.That(caseDocx, Is.EqualTo("application/vnd.openxmlformats-officedocument.wordprocessingml.document"));
-            //Assert.That(caseZip, Is.EqualTo("application/zip"));
-
+            Assert.That(casePdf, Is.EqualTo("application/pdf"));
+            Assert.That(caseJson, Is.EqualTo("application/json"));
+            Assert.That(caseXml, Is.EqualTo("application/xml"));
+            Assert.That(caseXls, Is.EqualTo("application/vnd.ms-excel"));
+            Assert.That(caseXlsx, Is.EqualTo("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"));
+            Assert.That(caseDoc, Is.EqualTo("application/msword"));
+            Assert.That(caseDocx, Is.EqualTo("application/vnd.openxmlformats-officedocument.wordprocessingml.document"));
+            Assert.That(caseZip, Is.EqualTo("application/zip"));
             //Assert.That(caseOtf, Is.EqualTo("font/otf"));
             //Assert.That(caseTtf, Is.EqualTo("font/ttf"));
             //Assert.That(caseWoff, Is.EqualTo("font/woff"));

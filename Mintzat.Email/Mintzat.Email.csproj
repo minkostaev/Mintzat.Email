@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>1.0.10</Version>
+    <Version>1.0.11</Version>
     <!--<AssemblyVersion>1.0.1.0</AssemblyVersion>
     <FileVersion>1.0.1.0</FileVersion>
     <VersionPrefix>1.0.1</VersionPrefix>-->
@@ -14,8 +14,8 @@
     <PackageReference Include="Resend" Version="0.0.7" />
   </ItemGroup>-->
 
-  <!--NuGet Package configuration for nuget.org-->
   <PropertyGroup>
+    <!--NuGet Package configuration for nuget.org-->
     <Description>This library's purpose is for easy emails sending with different providers</Description>
     <PackageReadmeFile>README-nuget.md</PackageReadmeFile>
     <PackageTags>email;resend</PackageTags>
@@ -29,23 +29,23 @@
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
-
-  <!--NuGet Package configuration for nuget.org-->
   <ItemGroup>
+    <!--NuGet Package configuration for nuget.org-->
     <None Include="..\README-nuget.md" Pack="true" PackagePath="\" />
-    <None Include="..\README-template.md" Pack="false" PackagePath="\" />
   </ItemGroup>
 
-  <!--<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="pwsh -ExecutionPolicy Bypass -NoProfile -NonInteractive -File $(SolutionDir)preBuild.ps1" />
-  </Target>-->
+  <ItemGroup>
+    <None Include="..\.github\workflows\dotnet.yml" />
+    <None Include="..\.gitignore" />
+    <None Include="..\preBuild.ps1" />
+    <None Include="..\README-template.md" />
+  </ItemGroup>
 
   <PropertyGroup>
     <!-- Explicitly set IsWindows based on the operating system -->
     <IsWindows Condition=" '$(OS)' == 'Windows_NT' ">true</IsWindows>
     <IsWindows Condition=" '$(OS)' != 'Windows_NT' ">false</IsWindows>
   </PropertyGroup>
-
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <!-- Use powershell.exe on Windows, pwsh on Linux -->
     <Exec Condition="'$(IsWindows)' == 'true'" Command="powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File $(SolutionDir)preBuild.ps1" />
