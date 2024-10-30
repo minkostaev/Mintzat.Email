@@ -42,9 +42,9 @@ public class ValidationTests
         string? caseDocx = Validation.GetAttachedFileType(".docx");
         string? caseZip = Validation.GetAttachedFileType(".zip");
 
-        //string? caseOtf = Validation.GetAttachedFileType(".otf");
-        //string? caseTtf = Validation.GetAttachedFileType(".ttf");
-        //string? caseWoff = Validation.GetAttachedFileType(".woff");
+        string? caseOtf = Validation.GetAttachedFileType(".otf");
+        string? caseTtf = Validation.GetAttachedFileType(".ttf");
+        string? caseWoff = Validation.GetAttachedFileType(".woff");
 
         Assert.Multiple(() =>
         {
@@ -77,9 +77,9 @@ public class ValidationTests
             Assert.That(caseDoc, Is.EqualTo("application/msword"));
             Assert.That(caseDocx, Is.EqualTo("application/vnd.openxmlformats-officedocument.wordprocessingml.document"));
             Assert.That(caseZip, Is.EqualTo("application/zip"));
-            //Assert.That(caseOtf, Is.EqualTo("font/otf"));
-            //Assert.That(caseTtf, Is.EqualTo("font/ttf"));
-            //Assert.That(caseWoff, Is.EqualTo("font/woff"));
+            Assert.That(caseOtf, Is.EqualTo("font/otf"));
+            Assert.That(caseTtf, Is.EqualTo("font/ttf"));
+            Assert.That(caseWoff, Is.EqualTo("font/woff"));
         });
     }
 }

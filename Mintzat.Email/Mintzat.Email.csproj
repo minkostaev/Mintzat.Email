@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>1.0.11</Version>
+    <Version>1.0.12</Version>
     <!--<AssemblyVersion>1.0.1.0</AssemblyVersion>
     <FileVersion>1.0.1.0</FileVersion>
     <VersionPrefix>1.0.1</VersionPrefix>-->
@@ -31,14 +31,14 @@
   </PropertyGroup>
   <ItemGroup>
     <!--NuGet Package configuration for nuget.org-->
-    <None Include="..\README-nuget.md" Pack="true" PackagePath="\" />
+    <None Include="..\scripts\README-nuget.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="..\.github\workflows\dotnet.yml" />
     <None Include="..\.gitignore" />
-    <None Include="..\preBuild.ps1" />
-    <None Include="..\README-template.md" />
+    <None Include="..\scripts\preBuild.ps1" />
+    <None Include="..\scripts\README-template.md" />
   </ItemGroup>
 
   <PropertyGroup>
@@ -48,8 +48,8 @@
   </PropertyGroup>
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <!-- Use powershell.exe on Windows, pwsh on Linux -->
-    <Exec Condition="'$(IsWindows)' == 'true'" Command="powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File $(SolutionDir)preBuild.ps1" />
-    <Exec Condition="'$(IsWindows)' != 'true'" Command="pwsh -ExecutionPolicy Bypass -NoProfile -NonInteractive -File $(SolutionDir)preBuild.ps1" />
+    <Exec Condition="'$(IsWindows)' == 'true'" Command="powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File $(SolutionDir)scripts\preBuild.ps1" />
+    <Exec Condition="'$(IsWindows)' != 'true'" Command="pwsh -ExecutionPolicy Bypass -NoProfile -NonInteractive -File $(SolutionDir)scripts\preBuild.ps1" />
   </Target>
 
 </Project>
