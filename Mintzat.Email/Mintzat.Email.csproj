@@ -49,7 +49,7 @@
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <!-- Use powershell.exe on Windows, pwsh on Linux -->
     <Exec Condition="'$(IsWindows)' == 'true'" Command="powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File $(SolutionDir)scripts\preBuild.ps1" />
-    <Exec Condition="'$(IsWindows)' != 'true'" Command="pwsh -ExecutionPolicy Bypass -NoProfile -NonInteractive -File $(SolutionDir)scripts\preBuild.ps1" />
+    <Exec Condition="'$(IsWindows)' != 'true'" Command="pwsh -ExecutionPolicy Bypass -NoProfile -NonInteractive -File $(SolutionDir)scripts/preBuild.ps1" />
   </Target>
 
 </Project>
