@@ -43,7 +43,7 @@ public class ResendUnitTests
             ["recipients@mail.com"],
             "Test Email from Resend",
             "<h1>Hello!</h1><p>This is a test email sent using Resend API.</p>",
-            null, ["cc@mail.com"], ["bcc@mail.com"], files);
+            null, ["cc@mail.com"], ["bcc@mail.com"], files, "James Bond");
 
         Assert.That(result.Item1, Is.True);
     }
