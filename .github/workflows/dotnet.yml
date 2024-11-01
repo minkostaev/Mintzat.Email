@@ -16,8 +16,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    #- name: Install PowerShell
-    #  run: sudo apt-get install -y powershell
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
@@ -37,8 +35,8 @@ jobs:
         /p:CollectCoverage=true
         /p:CoverletOutput=TestResults/
         /p:CoverletOutputFormat=lcov
-    - name: Publish coverage report to coveralls.io   
-      uses: coverallsapp/github-action@master   
+    - name: Publish coverage report to coveralls.io
+      uses: coverallsapp/github-action@master
       with:
-        github-token: ${{ secrets.COVERALLS_REPO_TOKEN }} 
+        github-token: ${{ secrets.COVERALLS_REPO_TOKEN }}
         path-to-lcov: Mintzat.Email.Tests/TestResults/coverage.info

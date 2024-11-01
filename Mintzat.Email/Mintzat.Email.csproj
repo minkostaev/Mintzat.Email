@@ -39,6 +39,7 @@
     <None Include="..\.gitignore" />
     <None Include="..\scripts\preBuild.ps1" />
     <None Include="..\scripts\README-template.md" />
+    <None Include="..\scripts\Resend.md" />
   </ItemGroup>
 
   <PropertyGroup>
