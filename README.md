@@ -15,5 +15,7 @@ The unit testing project has [![Coverage Status](https://coveralls.io/repos/gith
 
 This project uses: [ResendCom](https://resend.com/) to send emails.
 
-to do more...
+[tutorial](/scripts/Resend.md)
+
+to do more ...
 

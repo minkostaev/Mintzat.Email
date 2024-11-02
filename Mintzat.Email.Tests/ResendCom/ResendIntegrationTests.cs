@@ -1,4 +1,4 @@
-﻿namespace Mintzat.Email.Tests;
+﻿namespace Mintzat.Email.Tests.ResendCom;
 
 using Microsoft.Extensions.Configuration;
 using Mintzat.Email.ResendCom;

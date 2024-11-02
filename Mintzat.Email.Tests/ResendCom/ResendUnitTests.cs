@@ -1,4 +1,4 @@
-﻿namespace Mintzat.Email.Tests;
+﻿namespace Mintzat.Email.Tests.ResendCom;
 
 using Mintzat.Email.ResendCom;
 using Moq;
@@ -52,7 +52,7 @@ public class ResendUnitTests
     public async Task SendEmail_Client_Crash()
     {
         Type type = typeof(ResendSender);
-        
+
         FieldInfo? _emailClient = type.GetField("_emailClient", BindingFlags.NonPublic | BindingFlags.Instance);
         _emailClient?.SetValue(_sender, null);
 
@@ -83,6 +83,5 @@ public class ResendUnitTests
 
         Assert.That(result.Item1, Is.False);
     }
-
 
 }
