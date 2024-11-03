@@ -34,14 +34,6 @@
     <None Include="..\scripts\README-nuget.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
-  <!--<ItemGroup>
-    <None Include="..\.github\workflows\dotnet.yml" />
-    <None Include="..\.gitignore" />
-    <None Include="..\scripts\preBuild.ps1" />
-    <None Include="..\scripts\README-template.md" />
-    <None Include="..\scripts\Resend.md" />
-  </ItemGroup>-->
-
   <PropertyGroup>
     <!-- Explicitly set IsWindows based on the operating system -->
     <IsWindows Condition=" '$(OS)' == 'Windows_NT' ">true</IsWindows>
