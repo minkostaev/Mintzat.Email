@@ -4,7 +4,7 @@ using Mintzat.Email.Services;
 using System.Text;
 using System.Text.Json;
 
-public class ResendSender
+public class ResendSender : IResendSender
 {
     private const string _emailsUri = $"https://api.resend.com/emails";
     private readonly HttpClient _emailClient;
