@@ -5,7 +5,7 @@
 ![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white)
 ![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
 
----link---
+You can see the repo here [![Badge Name](https://img.shields.io/badge/GitHub-Mintzat.Email-blue.svg)](https://github.com/minkostaev/Mintzat.Email)
 
 Activity on this repo: [![GitHub last commit](https://img.shields.io/github/last-commit/minkostaev/Mintzat.Email?color=blue)](https://github.com/minkostaev/Mintzat.Email/commits/)
 

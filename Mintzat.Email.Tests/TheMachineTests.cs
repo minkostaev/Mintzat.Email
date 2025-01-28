@@ -29,4 +29,37 @@ public class TheMachineTests
         });
     }
 
+    [Test]
+    public void MachineMongo_Success()
+    {
+        MachineMongo machineMongo = new()
+        {
+            Id = "machineMongo.Id"
+        };
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(machineMongo.Id, Is.Not.Null);
+            Assert.That(machineMongo.Hash, Is.Null);
+            Assert.That(machineMongo.Networks, Is.Null);
+            Assert.That(machineMongo.Variables, Is.Null);
+        });
+    }
+
+    [Test]
+    public void MachineNetworks_Success()
+    {
+        Network network = new();
+        
+        Assert.Multiple(() =>
+        {
+            Assert.That(network.Id, Is.Null);
+            Assert.That(network.Name, Is.Null);
+            Assert.That(network.Description, Is.Null);
+            Assert.That(network.Type, Is.Null);
+            Assert.That(network.Mac, Is.Null);
+            Assert.That(network.Ip, Is.Null);
+        });
+    }
+
 }
